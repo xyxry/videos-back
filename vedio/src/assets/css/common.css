@@ -1,0 +1,9 @@
+.common-text-yahei{
+  font-family: "微软雅黑";
+  font-size: 24px ;
+  margin-left: 40px;
+}
+/*标签*/
+.father-tag el-tag{
+  margin-top: 5px !important;
+}
