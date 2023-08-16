@@ -4,14 +4,15 @@
       <el-col :span="24">
         <div class="grid-content bg-purple-dark common-text-yahei">热门视频</div>
       </el-col>
-      <el-col :span="4.5" v-for="(o, index) in 10" :key="o" style="margin-left: 40px;margin-top: 20px">
+      <el-col  :span="4.5" v-for="(o, index) in 10" :key="o" style="margin-left: 40px;margin-top: 20px;  " >
         <el-card shadow="hover" class="vedio-card " :body-style="{ padding: '5px' }">
           <el-image
             class="image"
-            src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+            @click="goToVedioPage"
+            src="http://localhost:8083/img.png"
             :fit="fir"></el-image>
-          <div style="padding: 14px;">
-            <span>好吃的汉堡</span>
+          <div style="padding: 14px;" >
+            <span>好吃的汉堡2</span>
             <div class="bottom clearfix">
               <div class="time">{{ currentDate }}</div>
               <div class="father-tag" style="margin-top: 5px">
@@ -36,6 +37,7 @@
         <el-card shadow="hover" class="vedio-card " :body-style="{ padding: '5px' }">
           <el-image
             class="image"
+            @click="goToPhotoPage"
             src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
             :fit="fir"></el-image>
           <div style="padding: 14px;">
@@ -68,7 +70,23 @@ export default {
       currentDate: new Date(),
       fir:"cover"
     }
-  }
+  },
+  methods: {
+    goToVedioPage() {
+      console.log("Button clicked!");
+      this.$router.push({ name: 'vedio' }).then(() => {
+        // After navigating to the Products page, go to the specific product detail page
+        this.$router.push({ name: 'VideoPlayback', params: { productType: 'list' } });
+      });
+    },
+    goToPhotoPage() {
+      console.log("Button clicked!");
+      this.$router.push({ name: 'photo' }).then(() => {
+        // After navigating to the Products page, go to the specific product detail page
+        this.$router.push({ name: 'PhotoList', params: { productType: 'list' } });
+      });
+    },
+  },
 }
 </script>
 
@@ -95,6 +113,7 @@ export default {
 }
 
 .image {
+  cursor: pointer;
   width: 100%;
   display: block;
 
@@ -112,6 +131,6 @@ export default {
 .vedio-card{
   width: 215px;
   height: 340px;
-  cursor: pointer;
+
 }
 </style>

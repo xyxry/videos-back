@@ -9,6 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import './assets/css/common.css';
 Vue.config.productionTip = false
 Vue.use(ElementUI);
+Vue.prototype.$activeMenu = '/index';
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
