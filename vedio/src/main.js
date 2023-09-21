@@ -7,6 +7,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 //公共css
 import './assets/css/common.css';
+import globalConfig from '../public/config'; // 引入配置文件
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 Vue.prototype.$activeMenu = '/index';

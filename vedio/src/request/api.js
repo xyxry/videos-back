@@ -5,8 +5,13 @@ import request from './request'
 * @params
 * path：路径
 */
-export const queryLocalHostFile = (params) => request.get('/file/queryLocalHostFile', params)
-
+export const queryLocalHostFile = (params) => request.get('/file/queryLocalHostFile', {params})
+/*
+* 路径搜索记录
+* @params
+* path：路径
+*/
+export const searchHistory =() => request.get('/file/searchHistory')
 // /*
 // * 本地文件查询接口
 // * @params

@@ -1,0 +1,39 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xy.videosback.mapper.FileMapper">
+
+    <resultMap id="searchHistoryMap" type="com.xy.videosback.entity.SearchHistory">
+        <id property="id" column="id"/>
+        <result property="content" column="content"/>
+        <result property="createTime" column="create_time"/>
+        <result property="num" column="num"/>
+    </resultMap>
+
+    <!-- 查询用户 -->
+    <select id="searchHistory" resultMap="searchHistoryMap">
+        SELECT *
+        FROM search_history
+        order by create_time DESC
+    </select>
+
+    <insert id="saveSearch" parameterType="com.xy.videosback.entity.SearchHistory">
+        INSERT INTO search_history (id, content, create_time, num)
+        VALUES (#{searchHistory.id}, #{searchHistory.content}, #{searchHistory.createTime},
+                #{searchHistory.num})
+    </insert>
+
+    <select id="queryContent" resultMap="searchHistoryMap">
+        SELECT *
+        FROM search_history
+        where content = #{path}
+    </select>
+
+    <update id="updateSearch" parameterType="com.xy.videosback.entity.SearchHistory">
+        UPDATE search_history
+        SET create_time = #{searchHistory.createTime}
+        WHERE id = #{searchHistory.id}
+    </update>
+
+
+</mapper>
