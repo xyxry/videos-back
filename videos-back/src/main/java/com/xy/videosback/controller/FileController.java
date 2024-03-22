@@ -39,9 +39,12 @@ public class FileController {
     @Operation(summary = "文件查询")
     public ResponseResult<JSONArray> index(@RequestParam(value = "path" ,required = false) String path){
         // 指定要扫描的文件夹路径
-        String filePath = "C:/vue-web/source";
+        String filePath = "C:/v" +
+                "ue-web/source";
         if (StrUtil.isNotEmpty(path)){
+
             filePath = path;
+
             SearchHistory searchHistory = fileService.queryContent(path);
             if ( searchHistory != null){
                 fileService.updateSearch(searchHistory);

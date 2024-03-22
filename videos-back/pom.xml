@@ -18,6 +18,42 @@
     </properties>
     <dependencies>
         <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-spring-boot-starter</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+        <!-- 建议只用start -->
+<!--                <dependency>-->
+<!--                    <groupId>cn.afterturn</groupId>-->
+<!--                    <artifactId>easypoi-base</artifactId>-->
+<!--&lt;!&ndash;                    <version>4.3.0</version>&ndash;&gt;-->
+<!--                    <version>5.2.2</version>-->
+<!--                </dependency>-->
+
+<!--                <dependency>-->
+<!--                    <groupId>cn.afterturn</groupId>-->
+<!--                    <artifactId>easypoi-web</artifactId>-->
+<!--        &lt;!&ndash;            <version>5.2.2</version>&ndash;&gt;-->
+<!--                    <version>4.3.0</version>-->
+<!--                </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>cn.afterturn</groupId>-->
+        <!--            <artifactId>easypoi-annotation</artifactId>-->
+        <!--            <version>4.3.0</version>-->
+        <!--        </dependency>-->
+        <!--注意:word中要使用循环等标签必须单独导入以下依赖-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>ooxml-schemas</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.flatbuffers</groupId>
+            <artifactId>flatbuffers-java</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
@@ -33,6 +69,7 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -59,7 +96,7 @@
             <artifactId>springfox-boot-starter</artifactId>
             <version>3.0.0</version>
         </dependency>
-<!--        视频处理-->
+        <!--        视频处理-->
         <dependency>
             <groupId>org.bytedeco</groupId>
             <artifactId>javacpp</artifactId>
@@ -74,6 +111,12 @@
             <groupId>org.bytedeco</groupId>
             <artifactId>ffmpeg-platform</artifactId>
             <version>5.0-1.5.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>2.0.38</version>
         </dependency>
 
     </dependencies>

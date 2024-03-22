@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+<!--    <el-config-provider>-->
+<!--      <router-view/>-->
+<!--    </el-config-provider>-->
 <!--    <img src="./assets/logo.png">-->
     <HelloWorld/>
   </div>

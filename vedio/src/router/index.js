@@ -58,13 +58,17 @@ const router = new Router({
 
 // 注册 beforeEach 导航守卫
 router.beforeEach((to, from, next) => {
+  console.log("-----1111",to)
   const firstIndex = to.path.indexOf('/'); // 获取第一个斜杠的索引
   const secondIndex = to.path.indexOf('/', firstIndex + 1); // 获取第二个斜杠的索引
   if (firstIndex !== -1 && secondIndex !== -1) {
     Vue.prototype.$activeMenu = to.path.substring(firstIndex , secondIndex).toLowerCase();
   } else {
     if (firstIndex !== -1){
-      Vue.prototype.$activeMenu =to.path.toLowerCase()
+      // if (to.path.length>1){
+        Vue.prototype.$activeMenu =to.path.toLowerCase()
+      // }
+
     }else {
       // console.log('No match found.');
     }
@@ -74,6 +78,9 @@ router.beforeEach((to, from, next) => {
   // console.log('From:', from.path);
   // console.log('To:', to.path);
   // 必须调用 next() 才能继续路由的跳转
+  console.log(Vue.prototype.$activeMenu+'aaaaa')
+  console.log(from)
+  console.log(to)
   next();
 });
 

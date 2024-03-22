@@ -7,7 +7,7 @@
       </div>
       <div class="centered-nav">
         <el-menu
-          router
+          :router="true"
           :default-active="$activeMenu"
           class="el-menu-demo"
           mode="horizontal"
@@ -46,10 +46,14 @@
 import index from "../components";
 import File from "../components/File";
 import video_playback from "../components/video/VideoPlayback"
+import Vue from "vue";
 export default {
   name: 'HelloWorld',
   data() {
+
+
     return {
+      current2:'/index'
     }
   },
   components: {
@@ -60,14 +64,29 @@ export default {
   methods: {
     handleSelect(key, keyPath) {
       this.activeIndex2 = key
-      console.log(key, keyPath);
+      console.log(key);
+      console.log(keyPath);
+    },
+    toHomePage(){
+      // console.log('this.$route.path')
+      // console.log(this.$route.path)
+      if (this.$route.path.length == 1){
+        this.$router.push({ name: 'Index' });
+      }
     }
   },
-  // created() {
-  //   // Set the initial active menu item based on the current route
-  //   console.log(this.$route.path+'xxx')
-  //   this.activeIndex2 = this.$route.path;
-  // },
+  created() {
+    // Set the initial active menu item based on the current route
+    console.log(Vue.prototype.$activeMenu+'xxx')
+    // Vue.prototype.$activeMenu = "/index"
+    // this.activeIndex2 = '/index';
+
+  },
+  mounted() {
+    this.toHomePage()
+    // Vue.prototype.$activeMenu = "/index"
+
+  }
 }
 </script>
 
