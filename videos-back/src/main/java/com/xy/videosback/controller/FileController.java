@@ -1,30 +1,22 @@
 package com.xy.videosback.controller;
 
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
+import com.xy.videosback.entity.FileTree1;
 import com.xy.videosback.entity.SearchHistory;
+import com.xy.videosback.mapper.FileMapper;
 import com.xy.videosback.service.FileService;
-import com.xy.videosback.service.impl.FileServiceImpl;
 import com.xy.videosback.util.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
-import org.bytedeco.opencv.global.opencv_imgcodecs;
-import org.opencv.imgcodecs.Imgcodecs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.bytedeco.ffmpeg.global.avcodec;
-import org.bytedeco.javacv.FFmpegFrameGrabber;
-import org.bytedeco.opencv.opencv_core.IplImage;
-import org.bytedeco.opencv.opencv_core.Mat;
-import org.bytedeco.opencv.opencv_core.MatVector;
-import org.bytedeco.opencv.opencv_core.Size;
 //import org.bytedeco.opencv.opencv_imgcodecs.Imgcodecs;
 //import org.bytedeco.opencv.opencv_imgproc.Imgproc;
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @RestController
@@ -34,6 +26,8 @@ public class FileController {
 
     @Autowired
     FileService fileService ;
+    @Autowired
+    FileMapper fileMapper;
 
     @GetMapping("/queryLocalHostFile")
     @Operation(summary = "文件查询")
@@ -62,6 +56,8 @@ public class FileController {
         scanFolder(file, jsonResult ,"");
         JSONArray jsonArray = new JSONArray();
         jsonArray.add(jsonResult);
+        FileTree1 fileTree1 = new FileTree1();
+
         return ResponseResult.success(jsonArray);
     }
     @PostMapping("/saveFile")
@@ -111,6 +107,7 @@ public class FileController {
                         fileJson.put("absolutPath", file.getAbsolutePath());
                         fileJson.put("fileName", file.getName());
                         fileJson.put("type", file.getParent());
+//                        fileJson.put("type", file.getParent());
                         jsonArray.put(fileJson);
                     }
                 }
@@ -127,6 +124,15 @@ public class FileController {
     @GetMapping("/searchHistory")
     @Operation(summary = "查询记录")
     public ResponseResult<List<SearchHistory>> searchHistory(){
+        return ResponseResult.success(fileService.searchHistory());
+    }
+
+    @GetMapping("/test3")
+    @Operation(summary = "查询记录")
+    public ResponseResult<Object> test3(){
+        FileTree1 fileTree1 = new FileTree1();
+        fileTree1.setId(IdUtil.getSnowflakeNextIdStr());
+        int insert = fileMapper.insert(fileTree1);
         return ResponseResult.success(fileService.searchHistory());
     }
 }
