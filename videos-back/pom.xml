@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.13</version>
+        <version>2.6.13</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
@@ -22,25 +22,6 @@
             <artifactId>easypoi-spring-boot-starter</artifactId>
             <version>4.4.0</version>
         </dependency>
-        <!-- 建议只用start -->
-<!--                <dependency>-->
-<!--                    <groupId>cn.afterturn</groupId>-->
-<!--                    <artifactId>easypoi-base</artifactId>-->
-<!--&lt;!&ndash;                    <version>4.3.0</version>&ndash;&gt;-->
-<!--                    <version>5.2.2</version>-->
-<!--                </dependency>-->
-
-<!--                <dependency>-->
-<!--                    <groupId>cn.afterturn</groupId>-->
-<!--                    <artifactId>easypoi-web</artifactId>-->
-<!--        &lt;!&ndash;            <version>5.2.2</version>&ndash;&gt;-->
-<!--                    <version>4.3.0</version>-->
-<!--                </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>cn.afterturn</groupId>-->
-        <!--            <artifactId>easypoi-annotation</artifactId>-->
-        <!--            <version>4.3.0</version>-->
-        <!--        </dependency>-->
         <!--注意:word中要使用循环等标签必须单独导入以下依赖-->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -50,7 +31,7 @@
         <dependency>
             <groupId>com.google.flatbuffers</groupId>
             <artifactId>flatbuffers-java</artifactId>
-            <version>2.0.0</version>
+            <version>23.5.26</version>
         </dependency>
 
         <dependency>
@@ -75,10 +56,23 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--mybatisplus启动器-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.5.1</version>
+        </dependency>
+        <!--创建表的插件-->
+        <dependency>
+            <groupId>com.gitee.sunchenbin.mybatis.actable</groupId>
+            <artifactId>mybatis-enhance-actable</artifactId>
+            <version>1.1.1.RELEASE</version>
+        </dependency>
+        <!--druid数据源-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.21</version>
         </dependency>
         <!-- Hutool -->
         <dependency>

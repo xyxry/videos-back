@@ -25,38 +25,47 @@
           <el-col span="12">
             <el-tree
               :data="data"
+              ref="tree"
+              default-expand-all
               show-checkbox
-              node-key="id"
+              node-key="absolutPath"
               :expand-on-click-node="false">
-      <span class="custom-tree-node" slot-scope="{ node, data }">
-        <span>{{ node.label }}</span>
-        <span>{{ data.fileName }}</span>
-        <span>{{ data.size }}</span>
-        <span>
-          <el-button
-            type="text"
-            size="mini"
-            @click="() => append(data)">
-            Append
-          </el-button>
-          <el-button
-            type="text"
-            size="mini"
-            @click="() => remove(node, data)">
-            Delete
-          </el-button>
-          <el-button
-            type="text"
-            size="mini"
-            @click="() => openFile(node, data)">
-            打开
-          </el-button>
-        </span>
-      </span>
+              <span class="custom-tree-node" slot-scope="{ node, data }">
+                <span>{{ node.label }}</span>
+                <span>{{ data.fileName }}</span>
+                <span>{{ data.size }}</span>
+                <span>
+                  <el-button
+                    type="text"
+                    size="mini"
+                    @click="() => append(data)">
+                    Append
+                  </el-button>
+                  <el-button
+                    type="text"
+                    size="mini"
+                    @click="() => remove(node, data)">
+                    Delete
+                  </el-button>
+                  <el-button
+                    type="text"
+                    size="mini"
+                    @click="() => openFile(node, data)">
+                    打开
+                  </el-button>
+
+                </span>
+              </span>
             </el-tree>
           </el-col>
-          <el-col span="12">
-            123
+          <el-col span="8">
+            <div class="buttons">
+<!--              <el-button @click="handleIconClick">通过 node 获取</el-button>-->
+              <el-button @click="getCheckedKeys">通过 key 获取</el-button>
+              <el-button @click="setCheckedKeys">获取图片</el-button>
+              <el-button @click="save">保存</el-button>
+              <el-button @click="resetChecked">清空</el-button>
+            </div>
           </el-col>
         </el-row>
         <p>使用 scoped slot</p>
@@ -67,7 +76,7 @@
 </template>
 
 <script>
-import {queryLocalHostFile,searchHistory} from "../request/api"
+import {queryLocalHostFile, searchHistory} from "../request/api"
 import globalConfig from '../../public/config'; // 引入配置文件
 export default {
   name: "File",
@@ -101,9 +110,9 @@ export default {
       })
     },
     //搜索记录
-    searchHistory(){
+    searchHistory() {
       // debugger
-      searchHistory({}).then(res =>{
+      searchHistory({}).then(res => {
         this.restaurants = res.data
         console.log(this.restaurants)
       })
@@ -124,7 +133,7 @@ export default {
     },
     //打开文件
     openFile(node, data) {
-      const customUrl =globalConfig.apiUrl+data.path;
+      const customUrl = globalConfig.apiUrl + data.path;
       window.open(customUrl, '_blank');
 
     },
@@ -141,29 +150,53 @@ export default {
       };
     },
     handleSelect(item) {
-      this.path =item.content
+      this.path = item.content
     },
     handleIconClick(ev) {
+      debugger
       this.path = ''
     },
+    getCheckedNodes() {
+      console.log(this.$refs.tree.getCheckedNodes());
+    },
+    getCheckedKeys() {
+      console.log(this.$refs.tree.getCheckedNodes());
+    },
+    save() {
+      // console.log(this.$refs.tree.getCheckedKeys());
+      console.log(this.$refs.tree.getCurrentKey());
+    },
+    setCheckedKeys: function () {
+      debugger
+      const treefile = this.$refs.tree.getCheckedNodes()
+      const a= treefile.filter(file => file.fileName.includes('.png') || file.fileName.includes('.jpg'))
+      console.log(a)
+      this.$refs.tree.setCheckedNodes(a);
+    },
+    resetChecked() {
+      this.$refs.tree.setCheckedKeys([]);
+    }
   },
   created() {
     // 在组件被创建时调用接口
     this.queryLocalHostFile();
     this.searchHistory();
   },
+
 }
 </script>
 
 <style scoped>
-.my-autocomplete{
+.my-autocomplete {
   width: 400px;
   margin-left: 100px;
 }
-.history-content{
+
+.history-content {
   font-size: 14px;
 }
-.history-createTime{
+
+.history-createTime {
   font-size: 12px;
 }
 </style>

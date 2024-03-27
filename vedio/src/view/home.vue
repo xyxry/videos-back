@@ -68,7 +68,9 @@ export default {
       console.log(keyPath);
     },
     toHomePage(){
-      // console.log('this.$route.path')
+      // console.log
+
+
       // console.log(this.$route.path)
       if (this.$route.path.length == 1){
         this.$router.push({ name: 'Index' });
